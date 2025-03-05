@@ -25,8 +25,6 @@ if menu == "ACCEUIL":
     st.dataframe(datafile.head()) 
     st.subheader("Description Générale :")
     st.dataframe(datafile.describe()) 
-    st.subheader("Description Générale :")
-    st.dataframe(datafile.info()) 
     st.write("")
     st.write("Rendez-vous au menu préddiction, entrer les dimension que vous voulez, et notre plateforme se chargera de vous prédire de quelle espèces cette fleurs appatiens.")
     
@@ -34,9 +32,7 @@ if menu == "ACCEUIL":
 elif menu == "PREDICTION":
     st.title("PREDICTION DES FLEURS")
     # Affichage de la précision du modèle
-    st.write(f"Précision du modèle : {accuracy:.2f}")
-    st.write("Entrez les dimensions de la fleur :")
-
+    
 # Prédiction du type de fleur
     if st.button("Prédire"):
         # Créer un DataFrame à partir des entrées de l'utilisateur
