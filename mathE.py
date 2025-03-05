@@ -5,16 +5,27 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import pickle
 
+###############CHARGEMENT DES DONNEES##################################
 def load_data():
     # Charger le fichier CSV localement
     datafile=pd.read_csv('MathE_dataset.csv', delimiter=";", encoding='cp1252')
     return datafile
 datafile = load_data()
 
-st.write('hello')
+###############PRERAITEMENT DES DONNEES##################################
+datafile['réussite'] = datafile['Type of Answer']
 
-#INTERFACE DE SAISIE DES DONNEES
+#ENCODAGE DES VARIABLES CATEGORIELLES (NON ORDONNEES: ONE HOT ENCODING)
+datafile = pd.get_dummies(datafile, columns=['Student Country'], drop_first=True)
 
+#ENCODAGE DES VARIABLES CATEGORIELLES (ORDONNEES: LABEL ENCODING)
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+datafile['Question Level'] = le.fit_transform(datafile['Question Level'])
+datafile['Topic'] = le.fit_transform(datafile['Topic'])
+datafile['Subtopic'] = le.fit_transform(datafile['Subtopic'])
+
+###############INTERFACE DE SAISIE DES DONNEES##################################
 st.sidebar.title("Prédiction")
 menu = st.sidebar.radio("Sélectionner une option", ["ACCEUIL", "PREDICTION", "A PROPOS DE NOUS"])
 if menu == "ACCEUIL":
