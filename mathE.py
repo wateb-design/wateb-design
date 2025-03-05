@@ -7,7 +7,7 @@ import pickle
 
 def load_data():
     # Charger le fichier CSV localement
-    datafile=pd.read_csv('Iris.csv', delimiter=";", encoding='cp1252')
+    datafile=pd.read_csv('MathE_dataset.csv', delimiter=";", encoding='cp1252')
     return df
 datafile = load_data()
 
