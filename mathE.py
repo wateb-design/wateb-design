@@ -84,7 +84,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 # Charger le modèle pré-entraîné
-model = joblib.load('model.pkl')
+#model = joblib.load('model.pkl')
 
 # Fonction pour normaliser les données d'entrée
 def preprocess_input(pays, niveau_question, sujet, colonne_numérique_1, colonne_numérique_2):
