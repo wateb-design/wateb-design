@@ -23,6 +23,8 @@ if menu == "ACCEUIL":
     st.write("")
     st.subheader("Voici un aperçu du jeu de données MathE dataset (les 05 premières lignes) :")
     st.dataframe(datafile.head()) 
+    st.dataframe(datafile.describe()) 
+    st.dataframe(datafile.info()) 
     st.write("")
     st.write("Rendez-vous au menu préddiction, entrer les dimension que vous voulez, et notre plateforme se chargera de vous prédire de quelle espèces cette fleurs appatiens.")
     
