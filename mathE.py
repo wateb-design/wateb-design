@@ -25,6 +25,11 @@ datafile['Question Level'] = le.fit_transform(datafile['Question Level'])
 datafile['Topic'] = le.fit_transform(datafile['Topic'])
 datafile['Subtopic'] = le.fit_transform(datafile['Subtopic'])
 
+#Séparation des variables explicatives (X) et de la variable cible (y)
+X = datafile.drop(['Student ID','Question ID','Type of Answer', 'Keywords','réussite'], axis=1) 
+# y : Variable cible
+y = datafile['réussite']
+
 ###############INTERFACE DE SAISIE DES DONNEES##################################
 st.sidebar.title("Prédiction")
 menu = st.sidebar.radio("Sélectionner une option", ["ACCEUIL", "PREDICTION", "A PROPOS DE NOUS"])
@@ -41,7 +46,7 @@ if menu == "ACCEUIL":
     
 # Formulaire pour saisir les dimensions
 elif menu == "PREDICTION":
-    st.title("PREDICTION DES FLEURS")
+    st.title("PREDICTION DES NOTES DES ELEVES")
     # Affichage de la précision du modèle
     
 # Prédiction du type de fleur
