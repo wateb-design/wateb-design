@@ -30,6 +30,31 @@ X = datafile.drop(['Student ID','Question ID','Type of Answer', 'Keywords','réu
 # y : Variable cible
 y = datafile['réussite']
 
+#Standardisation des données 
+from sklearn.preprocessing import StandardScaler
+
+#Séparation des données en ensembles d’entraînement et de test
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+scaler = StandardScaler()
+X[['Topic', 'Subtopic']] = scaler.fit_transform(X[['Topic', 'Subtopic']])
+
+#Entrainement du modèle
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# Entraîner le modèle
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Prédiction sur l'ensemble de test
+y_pred = model.predict(X_test)
+
+# Évaluer les performances du modèle
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy:.4f}')
+
+
 ###############INTERFACE DE SAISIE DES DONNEES##################################
 st.sidebar.title("Prédiction")
 menu = st.sidebar.radio("Sélectionner une option", ["ACCEUIL", "PREDICTION", "A PROPOS DE NOUS"])
