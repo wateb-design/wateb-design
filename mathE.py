@@ -12,6 +12,6 @@ def load_data():
     # Charger le fichier CSV localement
     datafile=pd.read_csv('MathE_data.csv', delimiter=";", encoding='cp1252')
 return df
-df = load_data()
+datafile = load_data()
 
 st.write('hello')
