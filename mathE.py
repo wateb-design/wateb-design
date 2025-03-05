@@ -13,7 +13,7 @@ def load_data():
     return datafile
 datafile = load_data()
 
-###############PRERAITEMENT DES DONNEES##################################
+###############PRETRAITEMENT DES DONNEES##################################
 datafile['réussite'] = datafile['Type of Answer']
 
 #ENCODAGE DES VARIABLES CATEGORIELLES (NON ORDONNEES: ONE HOT ENCODING)
@@ -74,7 +74,65 @@ if menu == "ACCEUIL":
 elif menu == "PREDICTION":
     st.title("PREDICTION DES NOTES DES ELEVES")
     # Affichage de la précision du modèle
+
+
+
+import streamlit as st
+import joblib
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+
+# Charger le modèle pré-entraîné
+model = joblib.load('model.pkl')
+
+# Fonction pour normaliser les données d'entrée
+def preprocess_input(pays, niveau_question, sujet, colonne_numérique_1, colonne_numérique_2):
+    # Créer un DataFrame avec les données d'entrée
+    input_data = pd.DataFrame({
+        'pays': [pays],
+        'niveau_de_question': [niveau_question],
+        'sujet': [sujet],
+        'colonne_numérique_1': [colonne_numérique_1],
+        'colonne_numérique_2': [colonne_numérique_2]
+    })
     
+    # Normalisation des données numériques
+    #scaler = StandardScaler()
+    #input_data[['colonne_numérique_1', 'colonne_numérique_2']] = scaler.fit_transform(input_data[['colonne_numérique_1', 'colonne_numérique_2']])
+    
+    # One-Hot Encoding pour les colonnes catégorielles
+    #input_data = pd.get_dummies(input_data, columns=['pays', 'sujet'], drop_first=True)
+    
+   # return input_data
+
+# Interface utilisateur Streamlit
+st.title('Prédiction de la Réponse d\'un Élève')
+
+# Entrée des caractéristiques de l'élève via le formulaire
+pays = st.selectbox('Sélectionnez le pays de l\'étudiant', ['France', 'Allemagne', 'Espagne', 'Italie'])  # Exemple de pays
+niveau_question = st.selectbox('Sélectionnez le niveau de la question', ['Débutant', 'Avancé'])
+sujet = st.selectbox('Sélectionnez le sujet de l\'examen', ['Algebra', 'Calcul', 'Géométrie'])
+colonne_numérique_1 = st.number_input('Entrez une valeur numérique (ex: note précédente)', min_value=0, max_value=100)
+colonne_numérique_2 = st.number_input('Entrez une autre valeur numérique (ex: temps passé à réviser)', min_value=0, max_value=100)
+
+
+
+
+# Lorsque l'utilisateur clique sur "Prédire", faire la prédiction
+if st.button('Prédire'):
+    # Prétraiter les données d'entrée
+    input_data = preprocess_input(pays, niveau_question, sujet, colonne_numérique_1, colonne_numérique_2)
+    
+    # Faire la prédiction avec le modèle
+    prediction = model.predict(input_data)
+    
+    # Afficher le résultat
+    if prediction == 1:
+        st.success("L'élève réussira à l'examen !")
+    else:
+        st.error("L'élève échouera à l'examen.")
+
 # Prédiction du type de fleur
     if st.button("Prédire"):
         # Créer un DataFrame à partir des entrées de l'utilisateur
