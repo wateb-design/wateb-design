@@ -22,7 +22,7 @@ if menu == "ACCEUIL":
     st.write("Bienvenue sur notre API de prédiction des especes de fleurs entrainée avec le jeu de donées <<Iris_Dataset.csv>>")
     st.write("")
     st.write("Voici un aperçu du jeu de données Iris (les 05 premières lignes) :")
-    st.dataframe(df.head()) 
+    st.dataframe(datafile.head()) 
     st.write("")
     st.write("Rendez-vous au menu préddiction, entrer les dimension que vous voulez, et notre plateforme se chargera de vous prédire de quelle espèces cette fleurs appatiens.")
     
