@@ -110,7 +110,7 @@ def preprocess_input(pays, niveau_question, sujet, colonne_numérique_1, colonne
 st.title('Prédiction de la Réponse d\'un Élève')
 
 # Entrée des caractéristiques de l'élève via le formulaire
-pays = st.selectbox('Sélectionnez le pays de l\'étudiant', ['France', 'Allemagne', 'Espagne', 'Italie'])  # Exemple de pays
+pays = st.selectbox('Sélectionnez le pays de l\'étudiant', ['Portugal', 'Ilaty', 'Lithuania', 'Ireland', 'Spain', 'Romania'])  # Exemple de pays
 niveau_question = st.selectbox('Sélectionnez le niveau de la question', ['Débutant', 'Avancé'])
 sujet = st.selectbox('Sélectionnez le sujet de l\'examen', ['Algebra', 'Calcul', 'Géométrie'])
 colonne_numérique_1 = st.number_input('Entrez une valeur numérique (ex: note précédente)', min_value=0, max_value=100)
