@@ -18,7 +18,7 @@ st.write('hello')
 st.sidebar.title("Prédiction")
 menu = st.sidebar.radio("Sélectionner une option", ["ACCEUIL", "PREDICTION", "A PROPOS DE NOUS"])
 if menu == "ACCEUIL":
-    st.title("ACCEUIL")
+    st.title("ACCEUIL (visualisation du jeu de données")
     st.write("Bienvenue sur notre API de prédiction des especes de fleurs entrainée avec le jeu de donées <<MathE_Dataset.csv>>")
     st.write("")
     st.subheader("Voici un aperçu du jeu de données MathE dataset (les 05 premières lignes) :")
