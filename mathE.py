@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import joblib
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
@@ -74,14 +76,6 @@ if menu == "ACCEUIL":
 elif menu == "PREDICTION":
     st.title("PREDICTION DES NOTES DES ELEVES")
     # Affichage de la précision du modèle
-
-
-
-import streamlit as st
-import joblib
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import StandardScaler
 
 # Charger le modèle pré-entraîné
 #model = joblib.load('model.pkl')
